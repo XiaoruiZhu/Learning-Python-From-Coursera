@@ -1,0 +1,56 @@
+# Mystery computation in Python
+# Takes input n and computes output named result
+
+import simplegui
+import math
+import time
+# global state
+
+tt = 365*24*3600 
+passtime =  (270 + 27) * 24 * 3600
+print (time.time() - passtime) / tt
+print 2015 - (time.time() - passtime) / tt
+result = 217
+iteration = 0
+max_iterations = 20
+
+# helper functions
+
+def init(start):
+    """Initializes n."""
+    global n
+    n = start
+    print "Input is", n
+    
+def get_next(current):
+    """???  Part of mystery computation."""
+    if  current % 2 == 0:
+        print current / 2
+        return current / 2
+    else:
+        print current * 3 + 1
+        return current * 3 + 1
+        #return 0.5 * (current + n / current)
+
+# timer callback
+
+def update():
+    """???  Part of mystery computation."""
+    global iteration, result
+    iteration += 1
+    # Stop iterating after max_iterations
+    if iteration >= max_iterations:
+        timer.stop()
+        print "Output is", result
+    else:
+        result = get_next(result)
+
+# register event handlers
+
+timer = simplegui.create_timer(1, update)
+
+# start program
+init(1)
+timer.start()
+#print math.log(9000000,10)
+#print math.sqrt(9000000)
